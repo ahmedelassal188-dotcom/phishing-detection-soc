@@ -1,0 +1,11 @@
+<group name="phishing_detection_soc,">
+  <rule id="100110" level="12">
+    <if_sid>86600</if_sid>
+    <field name="event_type" type="pcre2">^phishing_detection$</field>
+    <description>Phishing Detection SOC: Suspicious email detected</description>
+    <mitre>
+      <id>T1566</id>
+    </mitre>
+    <group>phishing_detection,email_security,</group>
+  </rule>
+</group>

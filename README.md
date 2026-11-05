@@ -148,3 +148,38 @@ Use HTTPS before exposing HTTP Basic Authentication beyond the local development
 ## 12. Project Status
 
 Working prototype with tested email analysis, PDF reporting, SOC authentication, and Wazuh alert integration.
+
+## 13. Wazuh Integration Configuration
+
+The Wazuh configuration templates are available in:
+
+- `integration/wazuh/agent-localfile.xml`
+- `integration/wazuh/phishing_detection_rules.xml`
+
+### Wazuh Agent Setup
+
+1. Install and register a Wazuh agent on the Ubuntu analysis machine.
+2. Open `/var/ossec/etc/ossec.conf`.
+3. Add the `<localfile>` block from `agent-localfile.xml` inside the existing `<ossec_config>` configuration.
+4. Replace the example location with the absolute path to `logs/phishing_alerts.json`.
+5. Validate the configuration and restart the Wazuh agent.
+
+### Wazuh Manager Setup
+
+1. Place `phishing_detection_rules.xml` in the manager's `/var/ossec/etc/rules/` directory.
+2. Verify that parent rule `86600` is available in the deployed Wazuh version.
+3. Validate the detection rule using `wazuh-logtest`.
+4. Restart the Wazuh manager after validating the configuration.
+5. Upload a synthetic phishing email through the SOC Dashboard.
+6. Verify that rule `100110` generates a level 12 alert in Wazuh Threat Hunting.
+
+### Integration Details
+
+- Event format: JSON
+- Event type: `phishing_detection`
+- Custom detection rule: `100110`
+- Severity level: `12`
+- MITRE ATT&CK technique: `T1566`
+- Monitoring source: `logs/phishing_alerts.json`
+
+The application and Wazuh Manager can run on separate machines.

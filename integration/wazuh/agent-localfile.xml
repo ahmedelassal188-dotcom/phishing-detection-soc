@@ -1,0 +1,14 @@
+<!--
+Wazuh Agent configuration template.
+
+Add this block inside the existing <ossec_config>
+section in /var/ossec/etc/ossec.conf.
+
+Replace the location with the absolute path
+to your phishingdetection project.
+-->
+
+<localfile>
+  <log_format>json</log_format>
+  <location>/absolute/path/to/phishingdetection/logs/phishing_alerts.json</location>
+</localfile>
