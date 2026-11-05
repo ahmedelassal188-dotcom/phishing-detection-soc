@@ -1,0 +1,18 @@
+
+.env
+
+# SOC credentials
+.env
+
+# Incident reports and SIEM logs
+reports/
+logs/
+
+# Python environment
+.venv/
+__pycache__/
+*.pyc
+
+# Temporary files
+*.tmp
+data/

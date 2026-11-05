@@ -1,0 +1,15 @@
+From: Security Team <security@example.com>
+To: student@example.com
+Subject: Account Verification Required
+MIME-Version: 1.0
+Content-Type: text/html; charset="utf-8"
+
+<html>
+<body>
+    <h2>Account Verification</h2>
+    <p>Your account requires verification.</p>
+    <a href="https://example.com/verify-account">
+        Verify Account
+    </a>
+</body>
+</html>

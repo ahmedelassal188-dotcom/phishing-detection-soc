@@ -1,0 +1,17 @@
+From: Security Team <security@example.com>
+To: student@example.com
+Subject: Urgent Account Verification
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+
+Dear User,
+
+Your account requires immediate verification.
+
+Please visit:
+https://example.com/verify-account
+
+Complete verification within 24 hours.
+
+Regards,
+Security Team

@@ -1,0 +1,80 @@
+from app.url_analyzer import analyze_url
+
+
+def detect_phishing(email_data, trusted_auth=False):
+    subject = email_data.get("subject", "")
+    body = email_data.get("body", "")
+    urls = email_data.get("urls", [])
+    auth_results = email_data.get("auth_results", {})
+    text = f"{subject} {body}".lower()
+
+    score = 0
+    reasons = []
+
+    # Rule 1: Urgency
+    urgency_words = [
+        "urgent",
+        "immediate",
+        "immediately"
+    ]
+
+    if any(word in text for word in urgency_words):
+        score += 25
+        reasons.append("Urgency language detected")
+
+    # Rule 2: Account verification
+    verification_words = [
+        "verify account",
+        "account verification",
+        "requires verification"
+    ]
+
+    if any(word in text for word in verification_words):
+        score += 20
+        reasons.append("Account verification request detected")
+
+    # Rule 3: Time pressure
+    if "within 24 hours" in text:
+        score += 15
+        reasons.append("Time pressure detected")
+
+    # Rule 4: URL analysis
+    url_results = []
+
+    for url in urls:
+        analysis = analyze_url(url)
+        url_results.append(analysis)
+
+    # Use highest URL score to avoid double counting
+    if url_results:
+        highest_url_score = max(
+            result["risk_score"]
+            for result in url_results
+        )
+
+        score += highest_url_score
+
+        for result in url_results:
+            for reason in result["reasons"]:
+                if reason not in reasons:
+                    reasons.append(reason)
+    score = min(score, 100)
+
+    # Risk classification
+    if score >= 70:
+        risk = "Critical"
+    elif score >= 45:
+        risk = "High"
+    elif score >= 20:
+        risk = "Medium"
+    else:
+        risk = "Low"
+
+    return {
+        "risk_score": score,
+        "risk_level": risk,
+        "reasons": reasons,
+        "url_analysis": url_results,
+        "auth_results": auth_results,
+        "auth_trusted": trusted_auth,
+    }

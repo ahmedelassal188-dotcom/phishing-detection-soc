@@ -1,0 +1,13 @@
+From: IT Support <support@example.com>
+To: employee@example.com
+Subject: Account Security Alert
+Authentication-Results: mx.example.com; spf=fail; dkim=fail; dmarc=fail
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+
+Dear Employee,
+
+Please verify your account information.
+
+Regards,
+IT Support

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Phishing Detection SOC</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <header class="topbar">
+        <div>
+            <h1>PHISHING DETECTION SOC</h1>
+            <p>Blue Team Email Analysis Platform</p>
+        </div>
+
+        <span class="system-status">
+            SYSTEM ONLINE
+        </span>
+    </header>
+
+    <main>
+
+        <section class="panel upload-panel">
+            <h2>Email Investigation</h2>
+            <p>Upload an EML file for security analysis.</p>
+
+            <form id="upload-form">
+                <input
+                    type="file"
+                    id="email-file"
+                    accept=".eml"
+                    required
+                >
+
+                <button type="submit" id="analyze-button">
+                    Analyze Email
+                </button>
+            </form>
+
+            <p id="upload-status"></p>
+           <a
+         id="report-download"
+         href="#"
+        download
+        hidden
+>
+        Download Incident Report (PDF)
+        </a>
+        </section>
+        <section class="metrics">
+
+            <article class="metric-card">
+                <h3>Risk Score</h3>
+                <strong id="risk-score">--/100</strong>
+            </article>
+
+            <article class="metric-card">
+                <h3>Risk Level</h3>
+                <strong id="risk-level">--</strong>
+            </article>
+
+            <article class="metric-card">
+                <h3>ML Phishing Probability</h3>
+                <strong id="ml-probability">--%</strong>
+            </article>
+
+            <article class="metric-card">
+                <h3>Final Assessment</h3>
+                <strong id="final-assessment">
+                    Not Analyzed
+                </strong>
+            </article>
+
+        </section>
+
+        <section class="panel">
+            <h2>Email Information</h2>
+            <p>Sender: <span id="email-sender">--</span></p>
+            <p>Subject: <span id="email-subject">--</span></p>
+        </section>
+
+        <section class="panel">
+            <h2>Detection Findings</h2>
+            <ul id="detection-findings">
+                <li>No analysis performed yet.</li>
+            </ul>
+        </section>
+
+        <section class="panel">
+            <h2>URL Analysis</h2>
+            <div id="url-results">
+                No URLs analyzed.
+            </div>
+        </section>
+
+        <section class="panel">
+            <h2>Threat Intelligence</h2>
+            <p>URLhaus Malware URL Intelligence</p>
+        
+            <div id="threat-intelligence-results">
+                No threat intelligence analysis performed.
+            </div>
+        </section>
+
+        <section class="panel">
+            <h2>Email Authentication</h2>
+            <div class="auth-grid">
+                <p>SPF: <span id="spf-status">--</span></p>
+                <p>DKIM: <span id="dkim-status">--</span></p>
+                <p>DMARC: <span id="dmarc-status">--</span></p>
+            </div>
+            <p id="auth-trust">Trust status: --</p>
+        </section>
+
+    </main>
+
+    <footer>
+        Phishing Detection & Analysis System
+        | SOC Blue Team Project
+    </footer>
+
+</div>
+
+<script src="/static/app.js"></script>
+
+</body>
+</html>
